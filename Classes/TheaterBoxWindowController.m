@@ -13,9 +13,12 @@
 
 - (void) setupWindow {
   self.window.movableByWindowBackground = YES;
-  //self.window.contentSize = [[NSApp projectorController] recommendedThumbnailSize];
   self.window.backgroundColor =[NSColor blackColor];
-  self.window.title = NSLocalizedString(@"projector.window.title", nil);
+  self.window.title = NSLocalizedString(@"", nil);
+}
+
+- (TheaterBoxView*) scene {
+  return [[self.window.contentView subviews] objectAtIndex:0];
 }
 
 @end

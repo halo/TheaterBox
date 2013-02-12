@@ -9,5 +9,6 @@
 
 - (void) activate;
 - (void) deactivate;
+- (void) toggle;
 
 @end

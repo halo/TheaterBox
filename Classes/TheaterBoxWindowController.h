@@ -1,7 +1,8 @@
 @class TheaterBoxWindow;
+@class TheaterBoxView;
 
 @interface TheaterBoxWindowController : NSWindowController
 
-//@property (strong) TheaterBoxWindow *window;
+@property (readonly) TheaterBoxView *scene;
 
 @end

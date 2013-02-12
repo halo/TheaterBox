@@ -1,5 +1,7 @@
 #import "TheaterBoxView.h"
 
+#import "TheaterBoxScreen.h"
+
 @implementation TheaterBoxView
 
 - (id) init {
@@ -9,8 +11,34 @@
 }
 
 - (void) drawRect:(NSRect)rect {
-  [[NSColor blueColor] set];
+  [[NSColor blackColor] set];
   [NSBezierPath fillRect: [self bounds]];
+}
+
+- (void) mouseDown:(NSEvent*)event {
+  [super mouseDown:event];
+  if ([event clickCount] == 2) [self wasDoubleClicked];
+}
+
+- (void) wasDoubleClicked {
+  [self toggleFullscreen];
+}
+
+- (void) toggleFullscreen {
+  if ([self isInFullScreenMode]) {
+    [self exitFullscreen];
+  } else {
+    [self goFullscreen];
+  }
+}
+
+- (void) goFullscreen {
+  NSDictionary *opts = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:NO], NSFullScreenModeAllScreens, NULL, NSFullScreenModeApplicationPresentationOptions, NULL];
+  [self enterFullScreenMode:[TheaterBoxScreen suggestedScreenForProjector] withOptions:opts];
+}
+
+- (void) exitFullscreen {
+  [self exitFullScreenModeWithOptions:NULL];
 }
 
 - (void) viewWillDraw {
