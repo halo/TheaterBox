@@ -11,8 +11,9 @@
 }
 
 - (void) drawRect:(NSRect)rect {
-  [[NSColor blackColor] set];
-  [NSBezierPath fillRect: [self bounds]];
+  [[NSColor blackColor] setFill];
+  NSRectFill(rect);
+  [super drawRect:rect];
 }
 
 - (void) mouseDown:(NSEvent*)event {
@@ -48,12 +49,12 @@
 - (void) expand {
   float superwidth = self.superview.frame.size.width;
   float superheight = self.superview.frame.size.height;
-  if (superwidth / superheight > 1.7778) {
-    float width = superheight * 1.7778;
+  if (superwidth / superheight > 1.7778f) {
+    float width = superheight * 1.7778f;
     float x = (superwidth - width) / 2;
     self.frame = NSMakeRect(x, 0, width, superheight);
   } else {
-    float height = superwidth * 0.5625;
+    float height = superwidth * 0.5625f;
     float y = (superheight - height) / 2;
     self.frame = NSMakeRect(0, y, superwidth, height);
   }
